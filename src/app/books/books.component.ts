@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { List } from '../shared/list';
-import { LISTS } from '../shared/lists';
+import { ListService } from '../services/list.service';
 
 @Component({
   selector: 'app-books',
@@ -10,15 +10,18 @@ import { LISTS } from '../shared/lists';
 
 export class BooksComponent implements OnInit {
 
-  lists: List[] = LISTS;
+  lists: List[];
   selectedList: List;
 
-  constructor() { }
+  constructor(private listService: ListService) {
+
+  }
   ngOnInit() {
+    this.lists=this.listService.getLists();
   }
 
-  onSelect(list: List) {
+onSelect(list: List) {
     this.selectedList =  list;
-  }
+  } 
 
 }

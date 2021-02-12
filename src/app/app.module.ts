@@ -14,6 +14,8 @@ import 'hammerjs';
 import { BooksComponent } from './books/books.component';
 import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 
+import { ListService } from './services/list.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { BookdetailsComponent } from './bookdetails/bookdetails.component';
     MatCardModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    ListService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
