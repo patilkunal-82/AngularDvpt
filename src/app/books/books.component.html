@@ -1,17 +1,15 @@
 <div class="container"
      fxLayout="column"
      fxLayoutGap="10px">
-
   <div fxFlex>
     <div>
       <h3>List of Books</h3>
       <hr>
     </div>
   </div>
-
   <div fxFlex>
     <mat-grid-list cols="2" rowHeight="200px">
-      <mat-grid-tile *ngFor="let list of lists">
+      <mat-grid-tile *ngFor="let list of lists" (click)="onSelect(list)">
         <img height="200px" src={{list.image}} alt={{list.name}}>
         <mat-grid-tile-footer>
           <h1> {{list.name | uppercase }} {{list.price}} </h1>
@@ -20,22 +18,6 @@
     </mat-grid-list>
   </div>
 
-  <div fxFlex *ngIf="selectedList">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <h3> {{selectedList.name | uppercase}} </h3>
-        </mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src={{selectedList.image}} alt={{selectedList.name}}>
-      <mat-card-content>
-        <p>{{selectedList.description}}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+<app-bookdetails [book]="selectedList"></app-bookdetails>
 
 </div>

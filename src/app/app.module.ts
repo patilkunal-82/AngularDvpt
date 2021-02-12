@@ -12,11 +12,13 @@ import { AppComponent } from './app.component';
 
 import 'hammerjs';
 import { BooksComponent } from './books/books.component';
+import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BooksComponent
+    BooksComponent,
+    BookdetailsComponent
   ],
   imports: [
     BrowserModule,
