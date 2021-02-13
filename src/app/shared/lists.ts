@@ -93,7 +93,7 @@ export const LISTS: List[] = [
         category: 'appetizer',
         featured: false,
         label: 'New',
-        price: '# 29.99',
+        price: '$ 29.99',
         description: 'A guide to the technologies, applications and human factors for AR and VR',
         comments: [
             {
@@ -135,7 +135,7 @@ export const LISTS: List[] = [
         category: 'dessert',
         featured: false,
         label: '',
-        price: '$ 29.99',
+        price: '$ 9.99',
         description: 'Lessons for building lasting success based on values',
         comments: [
             {

@@ -15,12 +15,16 @@ import { BooksComponent } from './books/books.component';
 import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 
 import { ListService } from './services/list.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
-    BookdetailsComponent
+    BookdetailsComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
