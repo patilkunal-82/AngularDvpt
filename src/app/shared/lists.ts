@@ -1,4 +1,4 @@
-import { List } from './list';
+import {List} from './list';
 
 export const LISTS: List[] = [
     {
@@ -44,6 +44,7 @@ export const LISTS: List[] = [
             }
         ]
     },
+
     {
         id: '1',
         name: 'Hypnobirthing',

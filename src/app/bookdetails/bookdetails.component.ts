@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { List } from '../shared/list';
+import { Params, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { ListService } from '../services/list.service';
 
 
 
@@ -10,12 +13,18 @@ import { List } from '../shared/list';
 })
 
 export class BookdetailsComponent implements OnInit {
-  @Input()
+
   book: List;
 
-  constructor() { }
+  constructor(private listservice: ListService, private location: Location, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    let id = this.route.snapshot.params['id'];
+    this.book = this.listservice.getList(id);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

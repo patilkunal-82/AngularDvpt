@@ -9,7 +9,16 @@ export class ListService{
 
   constructor() { }
 
-  getLists(): List[] {
-    return LISTS;
+      getLists(): List[] {
+        return LISTS;
+      }
+
+    // java script function filter is used here.
+      getList(id: string): List {
+        return LISTS.filter((list) => (list.id === id))[0];
+      }
+
+      getFeaturedList(): List {
+        return LISTS.filter((list) => list.featured)[0];
+      }
   }
-}
