@@ -12,5 +12,6 @@ export const routes: Routes = [
   { path: 'books', component: BooksComponent },
   { path: 'bookdetails/:id', component: BookdetailsComponent},
   { path: 'contactus', component: ContactComponent },
+  { path: 'about', component: AboutComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

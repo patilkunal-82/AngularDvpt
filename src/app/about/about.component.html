@@ -1,3 +1,71 @@
-<p>
-  about works!
-</p>
+<div class="container"
+  fxLayout="column"
+  fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+        <h3>About Us</h3>
+        <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <div fxFlex="70">
+        <h2>Our History</h2>
+        <p>Started in 2021, ReadARs Inc. quickly established itself as a platform that addresses 3 key issues - 'immersion','networking','discovery' - book readers have always faced. With its unique Augmented Reality (AR) based approach,readers enjoy content rich and immersive reading expereince. The platform enables the readers to share harvested experiences, provide reviews and recommedations, connect in a virtual community based setting and provides ideas to find the next best book to read - quicker & faster</p>
+        <p>ReadARs Inc. is a brainchild of its founders - who are avid readers themselves - who often struggled with 3 key issues - 'immersion','networking','discovery'. Founder believe that crowdsouring of ideas enabled by innovative technologies is right approach to address these issues.</p>
+      </div>
+      <div fxFlex="30">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+            <h2>Facts At a Glance</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <dl>
+              <dt>Started</dt>
+              <dd>November 21, 2020</dd>
+              <dt>Major Stake Holder</dt>
+              <dd>ReadARs Inc.</dd>
+              <dt>Last Year's Turnover</dt>
+              <dd>$1</dd>
+              <dt>Employees</dt>
+              <dd>1</dd>
+            </dl>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <mat-card>
+      <blockquote>
+        <h3>Reading brings us unkown friends</h3>
+        <footer>-- Honore de Belzac,
+          <cite>keepinspiring.me</cite>
+        </footer>
+      </blockquote>
+      <blockquote>
+        <h3>If you don’t like to read, you haven’t found the right book</h3>
+        <footer>-- J.K.Rowling,
+          <cite>keepinspiring.me</cite>
+        </footer>
+      </blockquote>
+    </mat-card>
+  </div>
+
+  <div fxFlex>
+    <h2>Team</h2>
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile *ngFor="let leader of leaders">
+        <img height="200px" src={{leader.image}} alt={{leader.name}}>
+        <mat-grid-tile-footer>
+          <h1> {{leader.name | uppercase }} {{leader.description}} </h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
