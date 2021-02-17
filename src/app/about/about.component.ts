@@ -20,13 +20,13 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
   this.leaderservice.getLeaders()
-  .then(leaders => this.leaders = leaders);
+  .subscribe(leaders => this.leaders = leaders);
 
   let id = this.route.snapshot.params['id'];
   //this.featuredLeader = this.leaderservice.getLeader(id);
 
   this.leaderservice.getLeader(id)
-  .then(featuredLeader => this.leaders[id] = featuredLeader);
+  .subscribe(featuredLeader => this.leaders[id] = featuredLeader);
 
   }
 

@@ -18,7 +18,7 @@ export class BooksComponent implements OnInit {
   }
   ngOnInit() {
     this.listService.getLists()
-    .then((lists) => this.lists = lists );
+    .subscribe((lists) => this.lists = lists );
   }
 
 onSelect(list: List) {

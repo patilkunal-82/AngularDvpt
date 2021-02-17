@@ -22,7 +22,7 @@ export class BookdetailsComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
 
      this.listservice.getList(id)
-    .then(book => this.book = book);
+    .subscribe(book => this.book = book);
   }
 
   goBack(): void {
