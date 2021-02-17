@@ -8,9 +8,9 @@
 
 <div fxFlex *ngIf="book">
   <div fxFlex="40">
-     <p>Display the details of the Book here</p>
+     <p>Book Details</p>
      <hr>
-    <mat-card *ngIf="book">
+    <mat-card>
        <mat-card-header>
          <mat-card-title>
            <h3 *ngIf="book"> {{book.name | uppercase}} </h3>
@@ -21,21 +21,28 @@
          <p>{{book.description}}</p>
        </mat-card-content>
        <mat-card-actions>
+         <button mat-button [routerLink]="['/bookdetails',prev]">
+           <span class="fa fa-chevron-left fa-lg"></span>
+         </button>
+         <button mat-button (click)="goBack()">BACK</button>
          <button mat-button>LIKE</button>
          <button mat-button>SHARE</button>
-         <button mat-button (click)="goBack()">BACK</button>
+         <span flex-spacer></span>
+         <button mat-button [routerLink]="['/bookdetails',next]">
+           <span class="fa fa-chevron-right fa-lg"></span>
+         </button>
        </mat-card-actions>
      </mat-card>
    </div>
-   <div fxFlex="40">
-       <p>Display the list of comments here</p>
+   <div fxFlex="40" *ngIf="book">
+       <p>Comments</p>
        <hr>
        <mat-card-header>
          <mat-card-title>
            <h3> {{book.name | uppercase}} </h3>
          </mat-card-title>
        </mat-card-header>
-         <mat-list *ngIf="book">
+         <mat-list >
            <h3>Comments</h3>
                <mat-list-item *ngFor="let comment of book.comments">
                  <h4 matLine> {{comment.comment}} </h4>

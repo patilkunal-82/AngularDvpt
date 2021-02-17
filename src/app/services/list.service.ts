@@ -30,4 +30,8 @@ export class ListService{
         // of operator from Observables
         return of(LISTS.filter((list) => list.featured)[0]).pipe(delay(2000));
       }
+
+      getListIds(): Observable<string[] | any>  {
+        return of(LISTS.map(list => list.id));
+      }
   }
