@@ -17,11 +17,12 @@ export class BooksComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.lists=this.listService.getLists();
+    this.listService.getLists()
+    .then((lists) => this.lists = lists );
   }
 
 onSelect(list: List) {
     this.selectedList =  list;
-  } 
+  }
 
 }

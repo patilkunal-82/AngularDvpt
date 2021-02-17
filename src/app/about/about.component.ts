@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 
 
-// Use of Location, Params and ActivatedRoute below 
+// Use of Location, Params and ActivatedRoute below
 export class AboutComponent implements OnInit {
 
   leaders: Leader[];
@@ -19,10 +19,15 @@ export class AboutComponent implements OnInit {
   constructor(private leaderservice: LeaderService, private location: Location, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  this.leaders = this.leaderservice.getLeaders();
+  this.leaderservice.getLeaders()
+  .then(leaders => this.leaders = leaders);
 
   let id = this.route.snapshot.params['id'];
-  this.featuredLeader = this.leaderservice.getLeader(id);
+  //this.featuredLeader = this.leaderservice.getLeader(id);
+
+  this.leaderservice.getLeader(id)
+  .then(featuredLeader => this.leaders[id] = featuredLeader);
+
   }
 
   goBack(): void {

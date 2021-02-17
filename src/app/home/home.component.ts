@@ -23,9 +23,9 @@ leader: Leader;
     private leaderservice: LeaderService) { }
 
   ngOnInit() {
-    this.list = this.listservice.getFeaturedList();
-    this.promotion = this.promotionservice.getFeaturedPromotion();
-    this.leader = this.leaderservice.getFeaturedLeader();
+    this.listservice.getFeaturedList().then(list => this.list = list);
+    this.promotionservice.getFeaturedPromotion().then(promotion => this.promotion = promotion);
+    this.leaderservice.getFeaturedLeader().then(leader => this.leader = leader);
 
   }
 

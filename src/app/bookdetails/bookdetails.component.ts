@@ -19,8 +19,10 @@ export class BookdetailsComponent implements OnInit {
   constructor(private listservice: ListService, private location: Location, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
-    this.book = this.listservice.getList(id);
+    const id = this.route.snapshot.params['id'];
+
+     this.listservice.getList(id)
+    .then(book => this.book = book);
   }
 
   goBack(): void {
