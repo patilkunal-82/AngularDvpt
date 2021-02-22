@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { List } from '../shared/list';
 import { ListService } from '../services/list.service';
 import { Promotion } from '../shared/promotion';
@@ -20,7 +20,7 @@ promotion: Promotion;
 leader: Leader;
 
   constructor(private listservice: ListService, private promotionservice: PromotionService,
-    private leaderservice: LeaderService) { }
+    private leaderservice: LeaderService,@Inject('BaseURL') private BaseURL ) { }
 
   ngOnInit() {
     this.listservice.getFeaturedList().subscribe(list => this.list = list);

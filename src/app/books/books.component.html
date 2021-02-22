@@ -10,7 +10,7 @@
   <div fxFlex *ngIf="lists">
     <mat-grid-list cols="2" rowHeight="200px">
       <mat-grid-tile *ngFor="let list of lists" [routerLink]="['/bookdetails',list.id]"> <!-- inter component communication -->
-        <img height="200px" src={{list.image}} alt={{list.name}}>
+        <img height="200px" src="{{BaseURL + list.image}}" alt={{list.name}}>
         <mat-grid-tile-footer>
           <h1> {{list.name | uppercase }} {{list.price}} </h1>
         </mat-grid-tile-footer>

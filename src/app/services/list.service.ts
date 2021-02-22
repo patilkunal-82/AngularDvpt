@@ -1,37 +1,41 @@
 import { Injectable } from '@angular/core';
 import { List } from '../shared/list';
-import { LISTS } from '../shared/lists';
+//import { LISTS } from '../shared/lists';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
+import { baseURL } from '../shared/baseurl';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService{
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-     // getLists() method is reconfigured to return Promise
+
       getLists(): Observable<List[]> {
 
-      return of(LISTS).pipe(delay(2000));
+
+      return this.http.get<List[]>(baseURL + 'lists');
 
       }
 
-    // java script function filter is used here.
+  
       getList(id: string): Observable<List> {
 
-      // of operator from Observables
-      return of(LISTS.filter((list) => (list.id === id))[0]).pipe(delay(2000));
+
+        return this.http.get<List>(baseURL + 'lists/' + id);
       }
 
       getFeaturedList(): Observable<List> {
 
-        // of operator from Observables
-        return of(LISTS.filter((list) => list.featured)[0]).pipe(delay(2000));
+
+        return this.http.get<List[]>(baseURL + 'lists?featured=true').pipe(map(lists => lists[0]));
       }
 
       getListIds(): Observable<string[] | any>  {
-        return of(LISTS.map(list => list.id));
+        return this.getLists().pipe(map(lists => lists.map(list => list.id)));
       }
   }
