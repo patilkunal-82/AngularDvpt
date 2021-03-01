@@ -24,7 +24,7 @@ export class BookdetailsComponent implements OnInit {
   listIds: string[];
   prev: string;
   next: string;
-
+  bookcopy: List;
 
   constructor(private listservice: ListService, private location: Location, private route: ActivatedRoute,
     private fb:FormBuilder, @Inject('BaseURL') private BaseURL) {
@@ -36,7 +36,7 @@ export class BookdetailsComponent implements OnInit {
      .subscribe((listIds) => this.listIds = listIds);
      this.route.params
       .pipe(switchMap((params: Params) => this.listservice.getList(params['id'])))
-      .subscribe(book => { this.book = book; this.setPrevNext(book.id);},
+      .subscribe(book => { this.book = book; this.bookcopy = book; this.setPrevNext(book.id);},
        errMess => this.errMess = <any>errMess);
   }
 
@@ -138,6 +138,10 @@ export class BookdetailsComponent implements OnInit {
       var index = this.book.comments.length;
       this.book.comments.push(this.comment);
       this.book.comments[index].date = date;
+      this.listservice.putList(this.bookcopy).subscribe(book => {
+        this.book = book;
+        this.bookcopy = book;
+      }, errMess => {this.book = null; this.bookcopy = null; this.errMess = <any>errMess});
 
   }
 
