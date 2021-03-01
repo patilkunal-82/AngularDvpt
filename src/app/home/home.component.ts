@@ -18,12 +18,14 @@ export class HomeComponent implements OnInit {
 list: List;
 promotion: Promotion;
 leader: Leader;
+listErrMess: string;
+
 
   constructor(private listservice: ListService, private promotionservice: PromotionService,
-    private leaderservice: LeaderService,@Inject('BaseURL') private BaseURL ) { }
+    private leaderservice: LeaderService, @Inject('BaseURL') private BaseURL ) { }
 
   ngOnInit() {
-    this.listservice.getFeaturedList().subscribe(list => this.list = list);
+    this.listservice.getFeaturedList().subscribe(list => this.list = list, errMess => this.listErrMess = <any>errMess);
     this.promotionservice.getFeaturedPromotion().subscribe(promotion => this.promotion = promotion);
     this.leaderservice.getFeaturedLeader().subscribe(leader => this.leader = leader);
 

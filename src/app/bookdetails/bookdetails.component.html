@@ -102,6 +102,10 @@
  </div>
 </div>
 
-<div fxFlex [hidden]="book">
+<div fxFlex [hidden]="book || errMess ">
   <mat-spinner></mat-spinner><h4>Loading..Please wait</h4>
+</div>
+<div fxFlex *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
 </div>

@@ -20,6 +20,7 @@ import { Comment } from '../shared/comment';
 export class BookdetailsComponent implements OnInit {
 
   book: List;
+  errMess: string;
   listIds: string[];
   prev: string;
   next: string;
@@ -35,7 +36,8 @@ export class BookdetailsComponent implements OnInit {
      .subscribe((listIds) => this.listIds = listIds);
      this.route.params
       .pipe(switchMap((params: Params) => this.listservice.getList(params['id'])))
-      .subscribe(book => { this.book = book; this.setPrevNext(book.id);});
+      .subscribe(book => { this.book = book; this.setPrevNext(book.id);},
+       errMess => this.errMess = <any>errMess);
   }
 
   setPrevNext(listId: string) {

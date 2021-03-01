@@ -5,37 +5,36 @@ import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { HttpClient} from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService{
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private processHTTPMsgService: ProcessHTTPMsgService) { }
 
 
       getLists(): Observable<List[]> {
-
-
-      return this.http.get<List[]>(baseURL + 'lists');
-
+      return this.http.get<List[]>(baseURL + 'lists')
+      .pipe(catchError(this.processHTTPMsgService.handleError));
       }
 
-  
+
       getList(id: string): Observable<List> {
-
-
-        return this.http.get<List>(baseURL + 'lists/' + id);
+        return this.http.get<List>(baseURL + 'lists/' + id)
+        .pipe(catchError(this.processHTTPMsgService.handleError));
       }
 
       getFeaturedList(): Observable<List> {
-
-
-        return this.http.get<List[]>(baseURL + 'lists?featured=true').pipe(map(lists => lists[0]));
+        return this.http.get<List[]>(baseURL + 'lists?featured=true').pipe(map(lists => lists[0]))
+        .pipe(catchError(this.processHTTPMsgService.handleError));
       }
 
       getListIds(): Observable<string[] | any>  {
-        return this.getLists().pipe(map(lists => lists.map(list => list.id)));
+        return this.getLists().pipe(map(lists => lists.map(list => list.id)))
+        .pipe(catchError(error => error));
       }
+
   }

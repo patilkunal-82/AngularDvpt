@@ -11,6 +11,7 @@ import { ListService } from '../services/list.service';
 export class BooksComponent implements OnInit {
 
   lists: List[];
+  errMess: string;
 
 
   constructor(private listService: ListService, @Inject('BaseURL') private BaseURL) {
@@ -18,7 +19,7 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     this.listService.getLists()
-    .subscribe((lists) => this.lists = lists );
+    .subscribe((lists) => this.lists = lists, errMess => this.errMess = <any>errMess);
   }
 
 
