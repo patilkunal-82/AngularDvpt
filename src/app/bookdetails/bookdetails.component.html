@@ -12,7 +12,7 @@
     <div fxLayout="column" fxLayout.gt-sm="row" *ngIf="book">
 
         <!-- display book details -->
-        <div fxFlex="40" *ngIf="book" [@visibility]="visibility">
+        <div fxFlex="40" *ngIf="book" [@visibility]="visibility" [@expand]>
           <h3>Book Details</h3>
           <hr>
          <mat-card>
@@ -40,7 +40,7 @@
           </mat-card>
         </div>
         <!-- display comment details -->
-        <div fxFlex="30" *ngIf="book" [@visibility]="visibility">
+        <div fxFlex="30" *ngIf="book" [@visibility]="visibility" [@expand]>
           <h3>Readers say...</h3>
           <hr>
           <mat-card-header>
@@ -70,7 +70,7 @@
        </div>
 
        <!-- display comment form details -->
-       <div fxFlex="30">
+       <div fxFlex="30" [@visibility]="visibility" [@expand]>
          <h3> Your comments?</h3>
          <hr>
          <mat-card-content>

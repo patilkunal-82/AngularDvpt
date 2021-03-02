@@ -58,7 +58,7 @@
   </div>
 
   <h2>Team</h2>
-  <div fxFlex *ngIf="leaders" >
+  <div fxFlex *ngIf="leaders" [@expand]>
 
     <mat-grid-list cols="2" rowHeight="200px">
       <mat-grid-tile *ngFor="let leader of leaders">
