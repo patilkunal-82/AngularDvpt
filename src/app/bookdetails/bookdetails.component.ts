@@ -4,9 +4,9 @@ import { LISTS } from '../shared/lists';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ListService } from '../services/list.service';
-import { switchMap } from 'rxjs/operators'
-
+import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Comment } from '../shared/comment';
 
 
@@ -14,7 +14,21 @@ import { Comment } from '../shared/comment';
 @Component({
   selector: 'app-bookdetails',
   templateUrl: './bookdetails.component.html',
-  styleUrls: ['./bookdetails.component.scss']
+  styleUrls: ['./bookdetails.component.scss'],
+
+  animations: [
+    trigger('visibility',[
+      state('shown',style({
+      transform: 'scale(1.0)',
+      opacity: 1
+    })),
+     state('hidden',style({
+       transform: 'scale(0.5)',
+       opacity: 0
+     })),
+     transition('* => *', animate('0.5s ease-in-out'))
+   ])
+  ]
 })
 
 export class BookdetailsComponent implements OnInit {
@@ -25,6 +39,7 @@ export class BookdetailsComponent implements OnInit {
   prev: string;
   next: string;
   bookcopy: List;
+  visibility = 'shown';
 
   constructor(private listservice: ListService, private location: Location, private route: ActivatedRoute,
     private fb:FormBuilder, @Inject('BaseURL') private BaseURL) {
@@ -35,8 +50,8 @@ export class BookdetailsComponent implements OnInit {
      this.listservice.getListIds()
      .subscribe((listIds) => this.listIds = listIds);
      this.route.params
-      .pipe(switchMap((params: Params) => this.listservice.getList(params['id'])))
-      .subscribe(book => { this.book = book; this.bookcopy = book; this.setPrevNext(book.id);},
+      .pipe(switchMap((params: Params) => {this.visibility = 'hidden'; return this.listservice.getList(params['id']);}))
+      .subscribe(book => {this.book = book; this.bookcopy = book; this.setPrevNext(book.id); this.visibility='shown';},
        errMess => this.errMess = <any>errMess);
   }
 

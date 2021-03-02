@@ -12,13 +12,13 @@
     <div fxLayout="column" fxLayout.gt-sm="row" *ngIf="book">
 
         <!-- display book details -->
-        <div fxFlex="40">
+        <div fxFlex="40" *ngIf="book" [@visibility]="visibility">
           <h3>Book Details</h3>
           <hr>
          <mat-card>
             <mat-card-header>
               <mat-card-title>
-                <h4 *ngIf="book"> {{book.name | uppercase}} </h4>
+                <h4> {{book.name | uppercase}} </h4>
               </mat-card-title>
             </mat-card-header>
             <img mat-card-image src="{{BaseURL + book.image}}" alt={{book.name}}>
@@ -40,7 +40,7 @@
           </mat-card>
         </div>
         <!-- display comment details -->
-        <div fxFlex="30" *ngIf="book">
+        <div fxFlex="30" *ngIf="book" [@visibility]="visibility">
           <h3>Readers say...</h3>
           <hr>
           <mat-card-header>
